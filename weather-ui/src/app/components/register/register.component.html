@@ -1,0 +1,35 @@
+<div class="content" fxLayout="column" fxLayoutAlign="start center">
+        <mat-card class="bubble">
+                <h3>register</h3>
+
+                <mat-form-field style="width:100%">
+                        <input matInput placeholder="email" [formControl]="emailControl" [(ngModel)]="registerObj.email">
+                </mat-form-field>
+
+                <br>
+
+                <mat-form-field style="width:100%"> 
+                        <input matInput placeholder="password" type="password" [formControl]="passControl" [(ngModel)]="registerObj.password">
+                </mat-form-field>
+
+                <br>
+
+                <mat-form-field style="width:100%"> 
+                        <input matInput placeholder="confirm password" type="password" [formControl]="passConfirmControl" [(ngModel)]="registerObj.passwordConfirm">
+                </mat-form-field>
+
+                <br>
+
+                <div *ngIf="errorObj.show" class="error-bubble">
+                        <p>{{ errorObj.message }}</p>
+                </div>
+
+                <button mat-button mat-raised-button color="primary"
+                        (click)="register()">
+                        register
+                </button>
+        </mat-card>
+</div>
+      
+              
+              

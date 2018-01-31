@@ -1,0 +1,68 @@
+<div class="content" fxLayout="column" fxLayoutAlign="start center">
+    <mat-card class="bubble">
+        <mat-form-field style="width:100%">
+            <input matInput placeholder="search location" [formControl]="searchControl" [(ngModel)]="searchTerm" (input)="checkCity()"/>
+        </mat-form-field>
+        
+        <div id="autocomplete-results" *ngIf="autocompleteResults.length > 0">
+            <p>
+                Select a location from the list below
+            </p>
+            <ul>
+                <li *ngFor="let item of autocompleteResults">
+                    <mat-card id="city-result" 
+                        (click)="checkWeather(item.description)"
+                        style="margin-top:10px;">
+                        <strong>{{ item.description }}</strong>
+                    </mat-card>
+                </li>
+            </ul>
+        </div>
+    </mat-card>
+        
+    <mat-card class="bubble">
+        <div *ngIf="profile.location == ''">
+            <p>You have not set a location. Type in your location above.</p>
+        </div>
+  
+        <div id="weather-results" *ngIf="result">
+            <div fxLayout fxLayout.xs="column">
+              <div class="item" fxFlex="70%">
+                  <strong style="color:#3f51b5">{{ result.location.city }}, {{ result.location.region }}, {{ result.location.country }}</strong><br><br>
+                  <img src="{{ result.image }}" style="float:left;" height="70" /><br>
+                  <strong style="float:left;margin-left:-20px;margin-top:-15px;">{{ result.condition.temp }}&deg;</strong><br>
+                  <strong style="float:left;margin-left:-20px;margin-top:-15px;">{{ result.condition.text }}</strong>
+              </div>
+              <div class="item" fxFlex="30%" align="right">
+                  <strong>{{ result.time }}</strong><br><br>
+                  <small>Sunrise: {{ result.astronomy.sunrise }}</small><br>
+                  <small>Sunset: {{ result.astronomy.sunset }}</small><br>
+                  <small class="link-show" (click)="showChart = true" *ngIf="!showChart">show extended forecast</small>
+                  <small class="link-show" (click)="showChart = false" *ngIf="showChart">hide extended forecast</small>
+              </div>
+            </div>
+
+            <div *ngIf="showChart" [chart]="chart"></div>
+  
+            <div>
+              <strong style="color:#3f51b5">Five Day Forecast</strong><br><br>
+              <div fxLayout
+                  fxLayout.xs="column"
+                  fxLayoutAlign="center"
+                  fxLayoutGap="10px"
+                  fxLayoutGap.xs="0"
+                  style="clear:both;">
+                  <mat-card *ngFor="let item of result.forecast" class="item" id="forecast-item" fxFlex="20%">
+                      <small><strong>{{ getNameOfDay(item.day) }}</strong></small><br>
+                      <small><strong>{{ formatDate(item.date) }}</strong></small><br>
+                      <img src="{{ getConditionImage(item.code) }}" width="80px" height="50px"/><br>
+                      <small>{{ item.text }}</small><br>
+                      <small>High: {{ item.high }}&deg;</small><br>
+                      <small>Low: {{ item.low }}&deg;</small>
+                  </mat-card>
+              </div>
+            </div>
+        </div>
+    </mat-card>
+  </div>
+  

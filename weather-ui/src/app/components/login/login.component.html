@@ -1,0 +1,29 @@
+<div class="content" fxLayout="column" fxLayoutAlign="start center">
+  <mat-card class="bubble">
+    <h3>login</h3>
+  
+    <mat-form-field style="width:100%">
+      <input matInput placeholder="email" [formControl]="emailControl" [(ngModel)]="loginObj.email">
+    </mat-form-field>
+    
+    <br>
+    
+    <mat-form-field style="width:100%"> 
+      <input matInput placeholder="password" type="password" [formControl]="passControl" [(ngModel)]="loginObj.password">
+    </mat-form-field>
+    
+    <br>
+  
+    <div *ngIf="errorObj.show" class="error-bubble">
+      <p>{{ errorObj.message }}</p>
+    </div>
+    
+    <button mat-button mat-raised-button color="primary"
+            (click)="login()">
+            login
+    </button>
+  
+    <br>
+  </mat-card>
+</div>
+

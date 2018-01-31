@@ -1,0 +1,22 @@
+#city-result:hover
+{
+    background-color:rgb(255, 64, 129);
+    color: white;
+    cursor: pointer;
+}
+
+#forecast-item:hover
+{
+    background-color:rgba(63, 81, 181, 0.35);
+    color: white;
+}
+
+.link-show
+{
+    color:#3f51b5;
+}
+
+.link-show:hover
+{
+    cursor: pointer;
+}

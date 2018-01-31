@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span routerLink="/" id="title-link">weather</span>
+
+    <span class="example-spacer"></span>
+    
+    <span *ngIf="isLoggedIn" id="email-display"><small>{{ userEmail }}</small></span>
+    <button mat-button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+    <button mat-button *ngIf="!isLoggedIn && currentRoute.url == '/login'" routerLink="/register">Register</button>
+    <button mat-button *ngIf="!isLoggedIn && currentRoute.url == '/register'" routerLink="/login">Return to Login</button>
+  </mat-toolbar-row>
+</mat-toolbar>

@@ -1,0 +1,17 @@
+#email-display
+{
+    display: block;
+}
+
+@media screen and (max-width: 640px) {
+    #email-display
+    {
+        display: none;
+    }
+    
+}
+
+#title-link:hover
+{
+    cursor: pointer;
+}
